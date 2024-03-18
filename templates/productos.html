@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es" data-bs-theme="auto">
+  <head><script src="/templates/static/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NexoJon 1.0</title>
+
+    <link href="/templates/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/templates/static/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="/templates/static/sidebars.css" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+              id="bd-theme"
+              type="button"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+              aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+    
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="grid" viewBox="0 0 16 16">
+    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+  </symbol>
+</svg>
+
+<main class="d-flex flex-nowrap">
+  <div class="flex-shrink-0 p-3" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+      <svg class="bi pe-none me-2" width="30" height="24" style="color: #0D6EFD;"><use xlink:href="#grid"/></svg>
+      <span class="fs-5 fw-semibold">NexoJon</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+      <!--Menu-->
+      {% include 'menu.html' %}
+      <!--Fin Menu-->
+
+  <div class="b-example-divider b-example-vr"></div>
+
+  <!--contenido-->
+  <div class="m-3 w-100 vh-100">
+    <h5 class="text-secondary">Lista de Productos</h5>
+    <div class="border-top mb-3 w-100"></div>
+    <article>
+      <div class="m-2"></div>
+      <table class="table table-striped m-0 bg-success text-white">
+          <thead>
+              <tr>
+                  <th class="centrado bg-primary text-white">Codigo</th>
+                  <th class="centrado bg-primary text-white">Nombre</th>
+                  <th class="centrado bg-primary text-white">Unidad de Medida</th>
+                  <th class="centrado bg-primary text-white">Descripcion</th>
+                  <th class="centrado bg-primary text-white">Categoria</th>
+                  <th class="centrado bg-primary text-white">Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% for producto in productos %}
+              <tr>
+                  <td class="centrado small">{{ producto[0] }}</td>
+                  <td class="centrado small">{{ producto[1] }}</td>
+                  <td class="centrado small">{{ producto[2] }}</td>
+                  <td class="centrado small">{{ producto[3] }}</td>
+                  <td class="centrado small">
+                      {% for categoria in categorias %}
+                          {% if categoria[0] == producto[4] %}
+                              {{ categoria[1] }}
+                          {% endif %}
+                      {% endfor %}
+                  </td>
+                  <td class="centrado small"><a href="#" onclick="editarProducto({{ producto[0] }})"><i class="fas fa-edit fa-lg" style="color: rgb(40, 151, 214);"></i></a>&nbsp;&nbsp;
+                    <a href="#" onclick="eliminarProducto({{ producto[0] }})"><i class="fas fa-trash fa-lg" style="color: rgb(197, 0, 0);"></i></a>
+                      </td>
+              </tr>
+
+              {% endfor %}
+              </div>
+          </tbody>
+      </table>
+      <table class="table table-striped m-0">
+          <thead><tr><th class="text-white m-0">
+      <nav aria-label="Page navigation example m-0">
+          <ul class="pagination">
+              <li class="page-item">
+                  {% if page > 1 %}
+                      <a class="page-link" href="/productos/ver_todos?page={{ page - 1 }}">Anterior</a>
+                      {% else %}
+                      <li class="page-item disabled">
+                          <a class="page-link">Anterior</a>
+                      </li>
+                  {% endif %}
+              </li>
+              {% for i in range(total_paginas) %}
+                  <li class="page-item"><a class="page-link" href="/productos/ver_todos?page={{ i + 1 }}">{{ i + 1 }}</a></li>
+              {% endfor %}
+              <li class="page-item">
+                  {% if page < total_paginas %}
+                      <a class="page-link" href="/productos/ver_todos?page={{ page + 1 }}">Siguiente</a>
+                  {% endif %}
+              </li>
+          </ul>
+      </nav>
+      </tr></thead>
+  </table>
+  </article>
+  </div>
+  <!--Fin Contenido-->
+</main>
+<script>
+  async function editarProducto(producto_id) {
+    try {
+      // Enviar la solicitud "GET" al endpoint para editar el producto
+      const response = await fetch(`/productos/editar/${producto_id}`, {
+        method: "GET",
+      });
+
+      if (response.ok) {
+        // Redireccionar a la página de edición si la respuesta es exitosa
+        window.location.href = `/productos/editar/${producto_id}`;
+      } else {
+        // Manejar errores en la respuesta
+        alert("Error al editar el producto");
+      }
+    } catch (error) {
+      // Manejar errores de red u otros errores
+      console.error("Error:", error);
+      alert("Error al editar el producto");
+    }
+  }
+</script>
+<script>
+  async function eliminarProducto(producto_id) {
+    // Mostrar una ventana emergente para pedir confirmación
+    const confirmar = confirm("¿Estás seguro de que deseas eliminar este producto?");
+
+    if (confirmar) {
+      // Enviar la solicitud "DELETE" si el usuario hace clic en "Aceptar"
+      const response = await fetch(`/productos/borrar/${producto_id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        window.location.href = "/Actualizado";
+      } else {
+        alert("Error al eliminar el producto");
+      }
+    } else {
+      // Descartar la acción si el usuario hace clic en "Cancelar"
+      alert("Acción descartada");
+    }
+  }
+</script>
+<script src="/templates/static/bootstrap.bundle.min.js"></script>
+<script src="/templates/static/sidebars.js"></script>
+</body>
+</html>
+
