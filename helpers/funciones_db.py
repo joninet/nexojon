@@ -16,6 +16,8 @@ class FuncionesDB():
       query = f"INSERT INTO {tabla} ({', '.join(column)}) VALUES ({', '.join(['?' for _ in values])})"
       self._cur.execute(query, values)
       self._con.commit()
+      id_ = self._cur.lastrowid
+      return id_
     except sql.Error as e:
       print(f"error: {e}")
 
@@ -78,6 +80,33 @@ class FuncionesDB():
       return {"message": "Borrado correctamente"}
      except sql.Error as e:
        return {"message": f"Error al borrar: {e}"}
+     
+  def obtenerStock(self, producto_id, almacen_id):
+      try:
+          query = "SELECT cantidad FROM Stock WHERE producto_id = ? AND almacen_id = ?"
+          self._cur.execute(query, (producto_id, almacen_id))
+          result = self._cur.fetchone()
+          if result:
+              return result[0]  # Devuelve la cantidad
+          else:
+              return None  # Si no se encuentra ninguna fila con los criterios dados
+      except sql.Error as e:
+          print(f"Error al obtener cantidad: {e}")
+          return None
+      
+  def editarStock(self, tabla, column, values, p_id, alm_id):
+      try:
+          setClause = ', '.join([f"{col} = ?" for col in column])
+          query = f"UPDATE {tabla} SET {setClause} WHERE producto_id = ? AND almacen_id = ?"
+
+          values.extend([p_id, alm_id])
+
+          self._cur.execute(query, tuple(values))
+          self._con.commit()
+          return "corrrecto"
+      except sql.Error as e:
+          print(f"Error al actualizar datos: {e}")
+          return None
 
   def __del__(self):
     self._con.close()

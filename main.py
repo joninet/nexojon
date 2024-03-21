@@ -9,6 +9,7 @@ from routers.categorias import router as categoriaRouter
 from routers.estados import router as estadosRouter
 from routers.ingresos import router as ingresosRouter
 from routers.almacen import router as almacenRouter
+from routers.movimiento import router as movimientoRouter
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
@@ -19,6 +20,8 @@ app.include_router(categoriaRouter)
 app.include_router(estadosRouter)
 app.include_router(ingresosRouter)
 app.include_router(almacenRouter)
+app.include_router(movimientoRouter)
+
 
 app.mount("/templates/static", StaticFiles(directory="templates/static"), name="static")
 

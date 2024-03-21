@@ -1,26 +1,33 @@
-import sqlite3
+import sqlite3 as sql
+class FuncionesDB():
+    def __init__(self):
+        self._con = sql.connect("App_Stock3/base_datos.db")
+        self._cur = self._con.cursor()
 
-conn = sqlite3.connect('App_Stock3/base_datos.db')
-cursor = conn.cursor()
+    def borrarRegistrosTabla(self, tabla):
+        try:
+            query = f"DELETE FROM {tabla}"
+            self._cur.execute(query)
+            self._con.commit()
+            print("Se han borrado todos los registros de la tabla.")
+        except sql.Error as e:
+            print(f"Error: {e}")
 
-cursor.execute("""CREATE TABLE Movimientos (
-                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 fecha DATE NOT NULL,
-                 cantidad REAL NOT NULL,
-               
-                 producto_id INTEGER NOT NULL,
-                 usuario_id INTEGER NOT NULL,
-                 almacen_id INTEGER NOT NULL,
-               
-                 FOREIGN KEY (producto_id) REFERENCES Producto(id)
-                 FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
-                 FOREIGN KEY (almacen_id) REFERENCES Almacen(id)
-               
-                 
-               )
-               """)
+    def borrarTabla(self, tabla):
+        try:
+            query = f"DROP TABLE IF EXISTS {tabla}"
+            self._cur.execute(query)
+            self._con.commit()
+            print(f"La tabla {tabla} ha sido eliminada.")
+        except sql.Error as e:
+            print(f"Error: {e}")
+
+    def __del__(self):
+        self._con.close()
+
+# Crear una instancia de la clase FuncionesDB
+db = FuncionesDB()
+db.borrarRegistrosTabla("Stock")
 
 
-conn.commit()
-conn.close()
 

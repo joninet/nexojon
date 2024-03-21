@@ -54,7 +54,11 @@ def borrarProveedor(proveedor_id: int):
 def editarProveedor(req: Request, proveedor_id: int):
     verDB = FuncionesDB()
     mostrarProveedor=verDB.seleccionarDatos("Proveedor", proveedor_id)
-    return template.TemplateResponse("proveedores_editar.html", {"request": req, "mostrarProveedor": mostrarProveedor})
+
+    if not mostrarProveedor:
+        return template.TemplateResponse("id_inexistente.html", {"request": req})
+    else:
+        return template.TemplateResponse("proveedores_editar.html", {"request": req, "mostrarProveedor": mostrarProveedor})
 
 @router.post("/proveedores/editardb")
 async def editarProveedor(req: Request,

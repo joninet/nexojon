@@ -58,8 +58,12 @@ async def crearIngreso(
     column = ["producto_id", "cantidad", "proveedor_id", "oc", "lote", "vto", "estado_id", "remito", "usuario_id", "almacen_id", "fecha"]
     values = [producto_id, cantidad, proveedor_id, oc, lote, vto, estado_id, remito, usuario_id, almacen_id, fecha_actual]
 
+    columnStock = ["producto_id", "cantidad", "almacen_id"]
+    valuesStock = [producto_id, cantidad, almacen_id]
+
     insertar = FuncionesDB()
     insertar.insertarDatos("Ingresos", column, values)
+    insertar.insertarDatos("Stock", columnStock, valuesStock)
     return template.TemplateResponse("datosActualizados.html", {"request": req})
 
 @router.get("/ingresos/ver_todos")
@@ -96,15 +100,55 @@ def borrarIngreso(ingresos_id: int):
 
 @router.get("/ingresos/editar/{ingresos_id}", response_class=HTMLResponse)
 def editarIngreso(req: Request, ingresos_id: int):
+
     verDB = FuncionesDB()
     mostrarIngreso=verDB.seleccionarDatos("Ingresos", ingresos_id)
 
-    categorias= verDB.mostrarTabla("Categoria")
-    producto= verDB.mostrarTabla("Producto")
-    proveedor= verDB.mostrarTabla("Proveedor")
-    estado= verDB.mostrarTabla("Estado")
-    almacen= verDB.mostrarTabla("Almacen")
-    usuario= verDB.mostrarTabla("Usuario")
+    if not mostrarIngreso:
+        return template.TemplateResponse("id_inexistente.html", {"request": req})
+    else:
+        categorias= verDB.mostrarTabla("Categoria")
+        producto= verDB.mostrarTabla("Producto")
+        proveedor= verDB.mostrarTabla("Proveedor")
+        estado= verDB.mostrarTabla("Estado")
+        almacen= verDB.mostrarTabla("Almacen")
+        usuario= verDB.mostrarTabla("Usuario")
 
-    return template.TemplateResponse("ingresos_editar.html", {"request": req, "mostrarIngreso": mostrarIngreso, "categorias": categorias, "producto": producto, "proveedor": proveedor, "estado": estado, "almacen": almacen, "usuario": usuario})
+        return template.TemplateResponse("ingresos_editar.html", {"request": req, "mostrarIngreso": mostrarIngreso, "categorias": categorias, "producto": producto, "proveedor": proveedor, "estado": estado, "almacen": almacen, "usuario": usuario})
 
+@router.post("/ingresos/editardb/{ingresos_id}")
+async def editarIngresos(
+    req: Request,
+    ingresos_id: int,
+    oc: str = Form(None),
+    lote: str = Form(None),
+    vto: str = Form(None),
+    remito: str = Form(None),
+    cantidad: str = Form(None),
+    producto_id: int = Form(None),
+    proveedor_id: int = Form(None),
+    estado_id: int = Form(None),
+    usuario_id: int = Form(None),
+    almacen_id: int = Form(None)):
+
+    verDB = FuncionesDB()
+    producto=verDB.seleccionarDatos("Producto",producto_id)
+    proveedor=verDB.seleccionarDatos("Proveedor",proveedor_id)
+    estado=verDB.seleccionarDatos("Estado", estado_id)
+    usuario=verDB.seleccionarDatos("Usuario", usuario_id)
+    almacen=verDB.seleccionarDatos("Almacen", almacen_id)
+
+    if not producto or not proveedor or not estado or not usuario or not almacen:
+        error_msg = "Codigo inexistente"
+        return template.TemplateResponse(
+            "ingresos_nuevo.html", 
+            {"request": req, "errorIngresoInsumo": error_msg, "producto_id": producto_id, "cantidad": cantidad, "proveedor_id": proveedor_id, "oc": oc, "lote": lote, "vto": vto, 
+            "estado_id": estado_id, "remito": remito, "usuario_id": usuario_id, "almacen_id": almacen_id}
+        )
+
+    column = ["oc", "lote", "vto", "remito", "cantidad", "producto_id", "proveedor_id", "estado_id", "usuario_id", "almacen_id"]
+    values = [oc, lote, vto, remito, cantidad, producto_id, proveedor_id, estado_id, usuario_id, almacen_id]
+
+    insertar = FuncionesDB()
+    insertar.editarRegistro("Ingresos", column, values, f"id = ?", (ingresos_id,))
+    return template.TemplateResponse("datosActualizados.html", {"request": req})
