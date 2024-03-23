@@ -41,18 +41,6 @@ async def crearMovimiento(
     insertar = FuncionesDB()
     insertar.insertarDatos("Movimientos", column, values)
 
-<<<<<<< HEAD
-    stockActual=float(insertar.obtenerStock(producto_id, almacen_origen_id))
-    stockNuevo=stockActual - cantidad
-
-    columnStock=["cantidad"]
-    valuesStock=[stockNuevo]
-
-    insertar.editarStock("Stock", columnStock, valuesStock, producto_id, almacen_origen_id)
-
-
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
-=======
     #descuento stock
     stockActual=insertar.obtenerStock(producto_id, almacen_origen_id)
 
@@ -88,4 +76,3 @@ async def crearMovimiento(
     usuario= verDB.mostrarTabla("Usuario")
     info_mensaje = "El movimiento fue creado exitosamente"
     return template.TemplateResponse("movimiento_nuevo.html", {"request": req, "info_mensaje": info_mensaje, "categorias": categorias, "producto": producto, "proveedor": proveedor, "estado": estado, "almacen": almacen, "usuario": usuario})
->>>>>>> e7c8a88 (OK)

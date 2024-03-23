@@ -38,18 +38,11 @@ def borrarProducto(producto_id: int):
 def editarProducto(req: Request, producto_id: int):
     verDB = FuncionesDB()
     mostrarProducto=verDB.seleccionarDatos("Producto", producto_id)
-<<<<<<< HEAD
-=======
     categorias= verDB.mostrarTabla("Categoria")
->>>>>>> e7c8a88 (OK)
 
     if not mostrarProducto:
         return template.TemplateResponse("id_inexistente.html", {"request": req})
     else:
-<<<<<<< HEAD
-        categorias= verDB.mostrarTabla("Categoria")
-=======
->>>>>>> e7c8a88 (OK)
         return template.TemplateResponse("productos_editar.html", {"request": req, "mostrarProducto": mostrarProducto, "categorias": categorias})
 
 @router.post("/productos/editardb")
@@ -103,12 +96,8 @@ async def crearProducto(
     values_stock = [producto_id, 0, "almacen"]
     insertar.insertarDatos("Stock", column_stock, values_stock)
 
-<<<<<<< HEAD
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
-=======
     info_mensaje = "El producto fue creado exitosamente"
     return template.TemplateResponse("productos_nuevo.html", {"request": req, "info_mensaje": info_mensaje, "categorias": categorias})
->>>>>>> e7c8a88 (OK)
 
 @router.get("/productos/ver_todos")
 def verProductos(req:Request, page: int = 1):
