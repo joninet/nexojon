@@ -16,7 +16,6 @@ sniffio==1.3.0
 soupsieve==2.3.1
 SQLAlchemy==2.0.27
 starlette==0.36.3
-systemd-python==234
 Unidecode==1.3.3
 urllib3==1.26.5
 uvicorn==0.24.0.post1
