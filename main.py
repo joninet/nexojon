@@ -26,6 +26,8 @@ app.include_router(stockRouter)
 
 app.mount("/templates/static", StaticFiles(directory="templates/static"), name="static")
 
+#hola
+
 
 
 
