@@ -6,9 +6,6 @@ oauthlib==3.2.0
 pydantic==2.6.1
 pytz==2022.1
 pyxdg==0.27
-PyYAML==5.4.1
-qrcode==7.3.1
-reportlab==3.6.8
 requests==2.25.1
 requests-file==1.5.1
 rsa==4.9
