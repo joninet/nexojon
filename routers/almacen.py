@@ -31,7 +31,8 @@ async def almacenCrear(req: Request,
 
     insertar = FuncionesDB()
     insertar.insertarDatos("Almacen", column, values)
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
+    info_mensaje = "El almacen fue creado exitosamente"
+    return template.TemplateResponse("almacen_nuevo.html", {"request": req, "info_mensaje": info_mensaje})
 
 @router.get("/Actualizado", response_class=HTMLResponse)
 def index():

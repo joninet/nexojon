@@ -37,7 +37,8 @@ async def proveedoresCrear(req: Request,
 
     insertar = FuncionesDB()
     insertar.insertarDatos("Proveedor", column, values)
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
+    info_mensaje = "El proveedor fue creado exitosamente"
+    return template.TemplateResponse("proveedores_nuevo.html", {"request": req, "info_mensaje": info_mensaje})
 
 @router.get("/Actualizado", response_class=HTMLResponse)
 def index():
@@ -84,7 +85,8 @@ async def editarProveedor(req: Request,
 
     insertar = FuncionesDB()
     insertar.editarRegistro("Proveedor", column, values, f"id = ?", (id,))
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
+    info_mensaje = "El proveedor fue editado exitosamente"
+    return template.TemplateResponse("proveedores_editar.html", {"request": req, "info_mensaje": info_mensaje})
 
 @router.get("/proveedores/ver_todos")
 def verProveedor(req:Request, page: int = 1):

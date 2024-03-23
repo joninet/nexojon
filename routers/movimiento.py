@@ -41,6 +41,7 @@ async def crearMovimiento(
     insertar = FuncionesDB()
     insertar.insertarDatos("Movimientos", column, values)
 
+<<<<<<< HEAD
     stockActual=float(insertar.obtenerStock(producto_id, almacen_origen_id))
     stockNuevo=stockActual - cantidad
 
@@ -51,3 +52,40 @@ async def crearMovimiento(
 
 
     return template.TemplateResponse("datosActualizados.html", {"request": req})
+=======
+    #descuento stock
+    stockActual=insertar.obtenerStock(producto_id, almacen_origen_id)
+
+    if not stockActual:
+      columnStock=["cantidad","producto_id", "almacen_id"]
+      valuesStock=[cantidad, producto_id, almacen_origen_id]
+      error_msg="El almacen de origen no cuenta con la cantidad pedida"
+      return template.TemplateResponse("movimiento_nuevo.html", {"request": req, "errorIngresoInsumo": error_msg})
+    else:
+      stockNuevo=float(stockActual) - cantidad
+      columnStock=["cantidad"]
+      valuesStock=[stockNuevo]
+      insertar.editarStock("Stock", columnStock, valuesStock, producto_id, almacen_origen_id)
+
+    #ingreso Stock
+    stockActualDestino=insertar.obtenerStock(producto_id, almacen_destino_id)
+    if not stockActualDestino:
+      columnStockIngreso=["cantidad","producto_id", "almacen_id"]
+      valuesStockIngreso=[cantidad, producto_id, almacen_destino_id]
+      insertar.insertarDatos("Stock", columnStockIngreso, valuesStockIngreso)
+    else:
+      stockNuevoDestino = cantidad + float(stockActualDestino)
+      columnStockDestino=["cantidad"]
+      valuesStockDestino=[stockNuevoDestino]
+      insertar.editarStock("Stock", columnStockDestino, valuesStockDestino, producto_id, almacen_destino_id)
+
+    verDB = FuncionesDB()
+    categorias= verDB.mostrarTabla("Categoria")
+    producto= verDB.mostrarTabla("Producto")
+    proveedor= verDB.mostrarTabla("Proveedor")
+    estado= verDB.mostrarTabla("Estado")
+    almacen= verDB.mostrarTabla("Almacen")
+    usuario= verDB.mostrarTabla("Usuario")
+    info_mensaje = "El movimiento fue creado exitosamente"
+    return template.TemplateResponse("movimiento_nuevo.html", {"request": req, "info_mensaje": info_mensaje, "categorias": categorias, "producto": producto, "proveedor": proveedor, "estado": estado, "almacen": almacen, "usuario": usuario})
+>>>>>>> e7c8a88 (OK)

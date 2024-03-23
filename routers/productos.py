@@ -38,11 +38,18 @@ def borrarProducto(producto_id: int):
 def editarProducto(req: Request, producto_id: int):
     verDB = FuncionesDB()
     mostrarProducto=verDB.seleccionarDatos("Producto", producto_id)
+<<<<<<< HEAD
+=======
+    categorias= verDB.mostrarTabla("Categoria")
+>>>>>>> e7c8a88 (OK)
 
     if not mostrarProducto:
         return template.TemplateResponse("id_inexistente.html", {"request": req})
     else:
+<<<<<<< HEAD
         categorias= verDB.mostrarTabla("Categoria")
+=======
+>>>>>>> e7c8a88 (OK)
         return template.TemplateResponse("productos_editar.html", {"request": req, "mostrarProducto": mostrarProducto, "categorias": categorias})
 
 @router.post("/productos/editardb")
@@ -68,7 +75,8 @@ async def editarProducto(
 
     insertar = FuncionesDB()
     insertar.editarRegistro("Producto", column, values, f"id = ?", (id,))
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
+    info_mensaje = "El Producto fue editado exitosamente"
+    return template.TemplateResponse("productos_editar.html", {"request": req, "info_mensaje": info_mensaje})
 
 @router.post('/productos/crear')
 async def crearProducto(
@@ -77,11 +85,10 @@ async def crearProducto(
     um: str = Form(None),
     descripcion: str = Form(None),
     categoria_id: int = Form(None)):
-
+    verDB = FuncionesDB()
+    categorias= verDB.mostrarTabla("Categoria")
     if not (nombre and um and descripcion and categoria_id):
         error_msg = "Por favor, complete todos los campos."
-        verDB = FuncionesDB()
-        categorias= verDB.mostrarTabla("Categoria")
         return template.TemplateResponse(
             "productos_nuevo.html", 
             {"request": req, "errorIngresoInsumo": error_msg, "nombre": nombre, "um": um, "descripcion": descripcion, "categoria_id": categoria_id, "categorias": categorias}
@@ -96,7 +103,12 @@ async def crearProducto(
     values_stock = [producto_id, 0, "almacen"]
     insertar.insertarDatos("Stock", column_stock, values_stock)
 
+<<<<<<< HEAD
     return template.TemplateResponse("datosActualizados.html", {"request": req})
+=======
+    info_mensaje = "El producto fue creado exitosamente"
+    return template.TemplateResponse("productos_nuevo.html", {"request": req, "info_mensaje": info_mensaje, "categorias": categorias})
+>>>>>>> e7c8a88 (OK)
 
 @router.get("/productos/ver_todos")
 def verProductos(req:Request, page: int = 1):

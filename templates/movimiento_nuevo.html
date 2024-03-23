@@ -73,7 +73,11 @@
 
 <main class="d-flex flex-nowrap">
   <div class="flex-shrink-0 p-3" style="width: 280px;">
+<<<<<<< HEAD
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+=======
+    <a href="/productos/ver_todos" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+>>>>>>> e7c8a88 (OK)
       <svg class="bi pe-none me-2" width="30" height="24" style="color: #0D6EFD;"><use xlink:href="#grid"/></svg>
       <span class="fs-5 fw-semibold">NexoJon</span>
     </a>
@@ -160,10 +164,38 @@
               </div>
           </div>
       </div>
+<<<<<<< HEAD
      </article>
   </div>
   <!--Fin Contenido-->
 </main>
+=======
+      <div class="modal fade" id="modal-info-mensaje" tabindex="-1" role="dialog" aria-labelledby="modal-info-mensaje-title" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title fs-5" id="modal-info-mensaje-title">Mensaje</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{ info_mensaje }}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% if info_mensaje %}
+<script>
+$(document).ready(function() {
+  $('#modal-info-mensaje').modal('show');
+});
+</script>
+{% endif %}
+>>>>>>> e7c8a88 (OK)
 <script>
   function mostrarNombreProducto() {
     var producto_id = document.getElementById('producto_id').value;

@@ -64,7 +64,21 @@ async def crearIngreso(
     insertar = FuncionesDB()
     insertar.insertarDatos("Ingresos", column, values)
     insertar.insertarDatos("Stock", columnStock, valuesStock)
+<<<<<<< HEAD
     return template.TemplateResponse("datosActualizados.html", {"request": req})
+=======
+
+    verDB = FuncionesDB()
+    categorias= verDB.mostrarTabla("Categoria")
+    producto= verDB.mostrarTabla("Producto")
+    proveedor= verDB.mostrarTabla("Proveedor")
+    estado= verDB.mostrarTabla("Estado")
+    almacen= verDB.mostrarTabla("Almacen")
+    usuario= verDB.mostrarTabla("Usuario")
+    info_mensaje = "El Ingreso fue creado exitosamente"
+
+    return template.TemplateResponse("ingresos_nuevo.html", {"request": req, "info_mensaje": info_mensaje, "categorias": categorias, "producto": producto, "proveedor": proveedor, "estado": estado, "almacen": almacen, "usuario": usuario})
+>>>>>>> e7c8a88 (OK)
 
 @router.get("/ingresos/ver_todos")
 def verIngresos(req:Request, page: int = 1):
@@ -83,13 +97,6 @@ def verIngresos(req:Request, page: int = 1):
     return template.TemplateResponse("ingresos.html", { "request" : req, "ingresos": ingresos, "producto": producto, "proveedor": proveedor, 
                                                         "estado": estado, "usuario": usuario, 
                                                         "almacen": almacen, "page": page, "total_paginas": total_paginas })
-
-
-@router.get("/ingresos/modal/{producto_id}", response_class=HTMLResponse)
-def editarProducto(req: Request, producto_id: int):
-    verDB = FuncionesDB()
-    proveedor=verDB.seleccionarDatos("Proveedor", producto_id)
-    return template.TemplateResponse("ingresos_modal.html", {"request": req, "proveedor": proveedor})
 
 @router.delete("/ingresos/borrar/{ingresos_id}",)
 def borrarIngreso(ingresos_id: int):
@@ -151,4 +158,9 @@ async def editarIngresos(
 
     insertar = FuncionesDB()
     insertar.editarRegistro("Ingresos", column, values, f"id = ?", (ingresos_id,))
+<<<<<<< HEAD
     return template.TemplateResponse("datosActualizados.html", {"request": req})
+=======
+    info_mensaje = "El Ingreso fue creado exitosamente"
+    return template.TemplateResponse("ingresos_editar.html", {"request": req, "info_mensaje": info_mensaje})
+>>>>>>> e7c8a88 (OK)

@@ -31,7 +31,8 @@ async def categoriasCrear(req: Request,
 
     insertar = FuncionesDB()
     insertar.insertarDatos("Categoria", column, values)
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
+    info_mensaje = "La categoria fue creado exitosamente"
+    return template.TemplateResponse("categorias_nuevo.html", {"request": req, "info_mensaje": info_mensaje})
 
 @router.get("/Actualizado", response_class=HTMLResponse)
 def index():

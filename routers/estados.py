@@ -31,7 +31,8 @@ async def estadoCrear(req: Request,
 
     insertar = FuncionesDB()
     insertar.insertarDatos("Estado", column, values)
-    return template.TemplateResponse("datosActualizados.html", {"request": req})
+    info_mensaje = "El Estado fue creado exitosamente"
+    return template.TemplateResponse("estados_nuevo.html", {"request": req, "info_mensaje": info_mensaje})
 
 @router.get("/Actualizado", response_class=HTMLResponse)
 def index():
